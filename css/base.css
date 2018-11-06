@@ -15,11 +15,6 @@
 	margin-bottom: 0;
 }
 
-.learn a{
-    font-weight: normal;
-    text-decoration: none;
-    color: #A44A3F;
-}
 
 .quote p:before{
 	content: '"';
@@ -41,7 +36,7 @@
 
 .quote footer{
 	position: absolute;
-	bottom: -40px;
+	bottom: -55px;
 	right: 0;
 }
 
@@ -72,11 +67,6 @@ hr{
 	border-top: 1px dashed #c5c5c5;
 	border-bottom: 1px dashed #f7f7f7;
 }
-.learn a{
-	font-weight: normal;
-	text-decoration: none;
-	color: #A44A3F;
-}
 
 .learn h3, .learn h4, .learn h5{
 	margin: 10px 0;
@@ -106,6 +96,8 @@ hr{
     transition-property: left;
     transition-duration: 500ms;
 }
+
+
 
 @media (min-width: 899px){
 	.learn-bar > .learn{

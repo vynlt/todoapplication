@@ -2,8 +2,11 @@
 	<html>
 	<head>
 		<title>TodoSIMPLEApplication</title>
-		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
+		<meta charset="utf-8">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css" href="./css/index.css">
 	</head>
 	<body class="learn-bar">
@@ -14,14 +17,14 @@
 					<h5>
 						Vanilla ES6
 					</h5>
-					<a href="#">Source</a>
+					<a class="btn btn-outline-dark btn-sm btn-source" href="#">Source</a>
 				</span>
 			</header>
 			<hr>
 			<blockquote class="quote speech-bubble">
-				<p>The ECMAScript 6 (ES2015) standard was ratified in 2015 following years of work standardizing improvements to ECMAScript 3. The committee introduced a wide variety of improvements such as arrow functions, const declarations, and native Promises.</p>
+				<p class="text-primary">The ECMAScript 6 (ES2015) standard was ratified in 2015 following years of work standardizing improvements to ECMAScript 3. The committee introduced a wide variety of improvements such as arrow functions, const declarations, and native Promises.</p>
 				<footer>
-					<a href="#">ECMAScript 6</a>
+					<a class="btn btn-light" href="https://www.w3schools.com/js/js_es6.asp">ECMAScript 6</a>
 				</footer>
 			</blockquote>
 			<footer>
@@ -38,7 +41,7 @@
 				<h1>TodoApp</h1>
 				<input class="new-todo" placeholder="What needs to be done?" autofocus>
 			</header>
-			<section style="display: block" class="main">
+			<section style="display: none" class="main">
 				<input id="toggle-all" class="toggle-all" type="checkbox">
 				<label for="toggle-all"> Mark all as complete</label>
 				<ul class="todo-list">
@@ -85,5 +88,7 @@
 			</p>
 		</footer>
 		<link rel="stylesheet" type="text/css" href="./css/base.css">
+		<script src="./dist/main.js"></script>
+		
 	</body>
 	</html>
