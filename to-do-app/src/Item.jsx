@@ -8,7 +8,7 @@
 			}
 		}
 
-		render(){
+		render = () => {
 			return(
 				<li>
 				<div className="view">

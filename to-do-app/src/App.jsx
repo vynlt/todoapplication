@@ -24,26 +24,25 @@ class App extends React.Component{
 
 	}
 
-        showAll(){
-			this.setState({
-				nowShowing: ALL_TODOS,
-			});
-			console.log("Trigger" + this.state.nowShowing);
-        }
+	showAll = () => {
+		this.setState({
+			nowShowing: ALL_TODOS,
+		});
+	}
 
-        showActive(){
-this.setState({
-				nowShowing: ACTIVE_TODOS,
-			});
-        }
+	showActive = () => {
+		this.setState({
+			nowShowing: ACTIVE_TODOS,
+		});
+	}
 
-        showCompleted(){
-this.setState({
-				nowShowing: COMPLETED_TODOS,
-			});
-        }
+	showCompleted = () => {
+		this.setState({
+			nowShowing: COMPLETED_TODOS,
+		});
+	}
 
-	storeData(modelName, data){
+	storeData = (modelName, data) => {
 		if (data) {
 			return localStorage.setItem(modelName, JSON.stringify(data));
 		}
@@ -52,14 +51,14 @@ this.setState({
 		return (model && JSON.parse(model)) || [];
 	}
 
-	generateRandomId(){
+	generateRandomId = () => {
 		return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
 	}
 
-	extend(){
+	extend = (...args) => {
 		var newObj = {};
-		for (var i = 0; i < arguments.length; i++) {
-			var obj = arguments[i];
+		for (var i = 0; i < args.length; i++) {
+			var obj = args[i];
 			for (var key in obj) {
 				if (obj.hasOwnProperty(key)) {
 					newObj[key] = obj[key];
@@ -69,7 +68,7 @@ this.setState({
 		return newObj;
 	}
 
-	insert(val){
+	insert = (val) => {
 		this.setState({
 			todos: this.state.todos.concat(
 			{
@@ -82,7 +81,7 @@ this.setState({
 		this.storeData(MODEL_NAME, this.state.todos);
 	}
 
-	toggleAll(event){
+	toggleAll = (event) => {
 		this.setState({
 			todos: this.state.todos.map((todo) => {
 				return this.extend({}, todo, {completed: event.target.checked});
@@ -91,7 +90,7 @@ this.setState({
 		this.storeData(MODEL_NAME, this.state.todos);
 	}
 
-	toggle(todoToToggle, event){
+	toggle = (todoToToggle, event) => {
 		this.setState({
 			todos: this.state.todos.map((todo) => {
 				return todo !== todoToToggle ?
@@ -104,7 +103,7 @@ this.setState({
 		this.storeData(MODEL_NAME, this.state.todos);
 	}
 
-	destroyTodo(todo){
+	destroyTodo = (todo) => {
 		this.setState({
 			todos: this.state.todos.filter((candidate) => {
 				return candidate !== todo;
@@ -115,7 +114,7 @@ this.setState({
 	}
 
 
-	save(todoToSave, text) {
+	save = (todoToSave, text) => {
 		this.setState({
 			todos: this.state.todos.map((todo) => {
 				return todo !== todoToSave ? todo : this.extend({}, todo, {title: text});
@@ -125,7 +124,7 @@ this.setState({
 		this.setState({editing: null});
 	}
 
-	clearCompleted() {
+	clearCompleted = () => {
 		this.setState({
 			todos: this.state.todos.filter((todo) => {
 				return !todo.completed;
@@ -136,20 +135,20 @@ this.setState({
 		this.storeData(MODEL_NAME, this.state.todos);
 	}
 
-	edit(todo) {
+	edit = (todo) => {
 		this.setState({editing: todo.id});
 	}
 
 
 
-	handleNTDKeyChange(event){
+	handleNTDKeyChange = (event) => {
 
 		this.setState({
 			newTodo: event.target.value,
 		});
 	}
 
-	handleNTDKeyDown(event){
+	handleNTDKeyDown = (event) => {
 		if (event.keyCode !== ENTER_KEY) {
 			return;
 		}
@@ -165,7 +164,7 @@ this.setState({
 
 
 
-	render(){
+	render = () => {
 		const srcLink = "https://github.com/vynlt/todoapplication";
 		const ES6Link = "https://www.w3schools.com/js/js_es6.asp";
 		const emptyLink = "#";
@@ -236,34 +235,6 @@ this.setState({
 
 		return(
 			<div className="learn-bar">
-			<aside className="learn">
-			<header>
-			<h3>ECMAScript 6</h3>
-			<span>
-			<h5>
-			Vanilla ES6
-			</h5>
-			<a className="btn btn-outline-dark btn-sm btn-source" href={srcLink}>Source</a>
-			</span>
-			</header>
-			<hr/>
-			<blockquote className="quote speech-bubble">
-			<p className="text-primary">
-			The ECMAScript 6 (ES2015) standard was ratified in 2015 following years of work standardizing improvements to ECMAScript 3. The committee introduced a wide variety of improvements such as arrow functions, const declarations, and native Promises.
-			</p>
-			<footer>
-			<a className="btn btn-light" href={ES6Link}>ECMAScript 6</a>
-			</footer>
-			</blockquote>
-			<footer>
-			<hr/>
-			<em>
-			If you have other helpful links to share, or find any of the links above no longer work, please 
-			<a href={emptyLink}>let us know</a>
-			.
-			</em>
-			</footer>
-			</aside>
 			<section className="todoapp">
 			<header>
 			<h1>TodoApp</h1>
