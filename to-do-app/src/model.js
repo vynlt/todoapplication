@@ -1,10 +1,9 @@
 
 class Model{
 
-
 	constructor(modelName){
 		this.modelName = modelName;
-		this.todos = storeData(modelName);
+		this.todos = this.storeData(modelName);
 		this.onChanges = [];
 	}
 
@@ -13,7 +12,7 @@ class Model{
 			return localStorage.setItem(modelName, JSON.stringify(data));
 		}
 
-		let model = localStorage.getItem(modelName);
+		const model = localStorage.getItem(modelName);
 		return (model && JSON.parse(model)) || [];
 	}
 
@@ -35,12 +34,12 @@ class Model{
 
 	insert(){
 		this.todos = this.todos.concat({
-			id: generateRandomId(),
-			title: title,
+			id: this.generateRandomId(),
+			title: this.title,
 			completed: false
 		});
 
-		storeData(this.modelName, this.data);
+		this.storeData(this.modelName, this.data);
 	}
 
 }

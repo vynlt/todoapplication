@@ -2,7 +2,6 @@ import React from 'react';
 import Item from './Item.jsx';
 import Footer from './Footer.jsx';
 
-
 const ENTER_KEY = 13;
 
 const ALL_TODOS = 'all';
