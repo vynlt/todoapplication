@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import TodoTextInput from '../containers/TodoTextInput';
+import TodoTextInput from './TodoTextInput';
 
 export default class TodoItem extends Component {
 	constructor(props){
@@ -9,12 +9,9 @@ export default class TodoItem extends Component {
 			editing: false,
 		}
 	}
-
-
 	handleDoubleClick = () => {
 		this.setState({ editing: true });
 	}
-
 	handleSave = (id, text) => {
 		if (text.length === 0) {
 			this.props.deleteTodo(id);
@@ -23,7 +20,6 @@ export default class TodoItem extends Component {
 		}
 		this.setState({ editing: false });
 	}
-
 	render() {
 		const { todo, completeTodo, deleteTodo } = this.props;
 		
@@ -33,23 +29,22 @@ export default class TodoItem extends Component {
 				<TodoTextInput text={todo.text}
 				editing={this.state.editing}
 				onSave={(text) => this.handleSave(todo.id, text)} />
-				)
+			)
 		} else {
 			element = (
 				<div className="view">
-				<input className="toggle"
-				type="checkbox"
-				checked={todo.completed}
-				onChange={() => completeTodo(todo.id)} />
-				<label onDoubleClick={this.handleDoubleClick}>
-				{todo.text}
-				</label>
-				<button className="destroy"
-				onClick={() => deleteTodo(todo.id)} />
+					<input className="toggle"
+					type="checkbox"
+					checked={todo.completed}
+					onChange={() => completeTodo(todo.id)} />
+					<label onDoubleClick={this.handleDoubleClick}>
+					{todo.text}
+					</label>
+					<button className="destroy"
+					onClick={() => deleteTodo(todo.id)} />
 				</div>
-				)
+			)
 		}
-
 		return (
 			<li className={classnames({
 				completed: todo.completed,
@@ -57,6 +52,6 @@ export default class TodoItem extends Component {
 			})}>
 			{element}
 			</li>
-			)
+		)
 	}
 }

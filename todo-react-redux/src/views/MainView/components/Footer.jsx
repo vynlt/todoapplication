@@ -1,6 +1,5 @@
-
 import React from 'react';
-import FilterLink from '../containers/FilterLink';
+import Link from './Link';
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters';
  
  const FILTER_TITLES = {
@@ -20,9 +19,12 @@ const Footer = (props) => {
       <ul className="filters">
         {Object.keys(FILTER_TITLES).map(filter =>
           <li key={filter}>
-            <FilterLink filter={filter}>
+            <Link filter={filter} 
+            setFilter={props.setFilter}
+             actions={props.actions} 
+             visibilityFilter={props.visibilityFilter} >
               {FILTER_TITLES[filter]}
-            </FilterLink>
+            </Link>
           </li>
         )}
       </ul>
@@ -32,10 +34,8 @@ const Footer = (props) => {
           className="clear-completed"
           onClick={onClearCompleted}
         >Clear completed</button>
-        
       }
     </footer>
   )
 }
-
 export default Footer;
