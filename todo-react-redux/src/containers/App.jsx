@@ -1,19 +1,23 @@
 import React from 'react';
-import MainSection from '../views/MainView/index.js';
-import NavBar from '../views/HeaderView/';
-import About from '../views/AboutView/';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import LoginView from '../views/LoginView';
+import HomePage from './homePage.jsx';
+import LoginService from '../services/login.js';
+
+import { BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+   Switch } from 'react-router-dom';
 
 const App = (props) => {
 	return (
-		<div className="learn-bar">
-			<NavBar />
-			<Router>
-				<Switch>	
-					<Route exact path="/" component={MainSection} />} />
-					<Route path="/about" component={About} />
-				</Switch>
-			</Router>
+		<div className="todo-app">
+		<Router>
+		<Switch>
+		<Route path="/login" render={() => <LoginView loginService={LoginService} />} />
+		<HomePage path="/" component={HomePage} loginService={LoginService} />
+		</Switch>
+		</Router>
 		</div>
 	);
 }

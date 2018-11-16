@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import TodoTextInput from './TodoTextInput';
+import TodoTextInput from '../../TodoTextInput';
+import './style.scss';
 
 export default class TodoItem extends Component {
 	constructor(props){
@@ -14,14 +15,14 @@ export default class TodoItem extends Component {
 	}
 	handleSave = (id, text) => {
 		if (text.length === 0) {
-			this.props.deleteTodo(id);
+			this.props.onDelete(id);
 		} else {
-			this.props.editTodo(id, text);
+			this.props.onEdit(id, text);
 		}
 		this.setState({ editing: false });
 	}
 	render() {
-		const { todo, completeTodo, deleteTodo } = this.props;
+		const {todo} = this.props;
 		
 		let element
 		if (this.state.editing) {
@@ -36,19 +37,20 @@ export default class TodoItem extends Component {
 					<input className="toggle"
 					type="checkbox"
 					checked={todo.completed}
-					onChange={() => completeTodo(todo.id)} />
+					onChange={() => this.props.onComplete(todo.id)} />
 					<label onDoubleClick={this.handleDoubleClick}>
 					{todo.text}
 					</label>
 					<button className="destroy"
-					onClick={() => deleteTodo(todo.id)} />
+					onClick={() => this.props.onDelete(todo.id)} />
 				</div>
 			)
 		}
 		return (
 			<li className={classnames({
 				completed: todo.completed,
-				editing: this.state.editing
+				editing: this.state.editing,
+				'todo-app-todo-item': true,
 			})}>
 			{element}
 			</li>

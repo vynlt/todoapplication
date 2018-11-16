@@ -1,14 +1,14 @@
 import React from 'react';
-import TodoTextInput from './TodoTextInput';
+import TodoTextInput from '../TodoTextInput';
 
 const Header = (props) => (
-  <header className="header">
+  <header className="todo-app-header">
     <h1>todos</h1>
     <TodoTextInput
       newTodo
       onSave={(text) => {
         if (text.length !== 0) 
-          props.addTodo(text);
+          props.onSave(text);
       }}
       placeholder="What needs to be done?"
     />
