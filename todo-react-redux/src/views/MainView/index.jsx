@@ -10,6 +10,7 @@ import * as TodoActions from './actions.js';
 import { createSelector } from 'reselect';
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/index.js';
 
+
 const MainView = ({filteredTodos, todosCount, completedCount, visibilityFilter, actions, model, }) => 
   (
     <div className="todo-app-main-view">

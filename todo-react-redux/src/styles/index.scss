@@ -32,7 +32,7 @@ html{
 		@include color($body_color);
 		@include width($body_width);
 		@extend .font-smoothing;
-		.todoapp{
+		.todo-app{
 			@include color($todo_app_color);
 			@include marginAndPadding($todo_app_margin-padding);
 			@include position($todo_app_position);

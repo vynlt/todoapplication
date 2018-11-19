@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import LoginService from '../../services/login.js';
 
-const HeaderView = () => {
+const HeaderView = ({onLogout}) => {
 	return (
         <nav className="navbar navbar-light navbar-expand-md bg-faded justify-content-center">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
@@ -19,7 +19,7 @@ const HeaderView = () => {
         </ul>
         </div>
         <ul className="nav navbar-nav navbar-right justify-content-right">
-        <li><a href="/" onClick={() => LoginService.signout()} ><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li><a href="/" onClick={onLogout} ><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
         </nav>
         );

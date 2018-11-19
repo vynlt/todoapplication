@@ -3,16 +3,16 @@ import MainView from '../views/MainView';
 import HeaderView from '../views/HeaderView';
 import AboutView from '../views/AboutView';
 import { BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
-import LoginService from '../services/login.js';
 
-const HomePage = ({ component: Component, loginService , ...rest }) => {
+
+const HomePage = ({ component: Component, loginState, logInStateChanger, ...rest }) => {
 	return (
 		<Route
 		{...rest}
 		render={(props) =>
-			LoginService.checkLogin() ? (
-				<div>
-				<HeaderView />
+			loginState ? (
+				<div className="todo-app">
+				<HeaderView onLogout={logInStateChanger} />
 				<Router>
 				<Switch>
 				<Route exact path="/" component={MainView} />

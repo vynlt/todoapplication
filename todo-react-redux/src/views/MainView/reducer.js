@@ -4,7 +4,8 @@ import {
   EDIT_TODO,
   COMPLETE_TODO,
   COMPLETE_ALL_TODOS,
-  CLEAR_COMPLETED
+  CLEAR_COMPLETED,
+  LOG_OUT
 } from './constants.js';
 import {SET_VISIBILITY_FILTER} from './constants.js';
 import {SHOW_ALL} from '../../constants/index.js';
@@ -18,7 +19,18 @@ const visibilityFilter = (state = SHOW_ALL, action) => {
   }
 }
 
+const logInStateChanger = (state = [], action) => {
+  switch(action.type){
+    case LOG_OUT:
+    return false;
+    default:
+    return state;
+  }
+}
+
 export { visibilityFilter };
+export { logInStateChanger };
+
 
 const todos = (state = [], action) => {
   switch (action.type) {

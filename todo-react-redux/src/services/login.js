@@ -18,6 +18,7 @@ const LoginService = {
     setTimeout(cb, 100); // fake async
   },
   signout() {
+    
   	utils.destroyLoginSession();
   }
 };
