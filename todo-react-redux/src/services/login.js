@@ -5,13 +5,20 @@ const LoginService = {
 	checkLogin(){
 		return utils.getLoginSession();
 	},
+  
+  addUser(email, password){
+    utils.addUser(email, password);
+  },
+  
+  getUser(email){
+    return utils.getUser(email);
+  },
   authenticate(cb) {
     utils.addLoginSession();
     setTimeout(cb, 100); // fake async
   },
-  signout(cb) {
+  signout() {
   	utils.destroyLoginSession();
-    setTimeout(cb, 100);
   }
 };
 

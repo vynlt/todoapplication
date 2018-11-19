@@ -19,8 +19,17 @@ class Utils{
 	};
 
 	destroyLoginSession = () =>{
-		sessionStorage.clear();
+		sessionStorage.removeItem('namespace');
 	};
+	
+	
+	addUser = (email, password) => {
+		localStorage.setItem(email, password);
+	}
+
+	getUser = (email) => {
+		return localStorage.getItem(email);
+	}
 
 };
 

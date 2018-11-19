@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import LoginService from '../../services/login.js';
 
 const HeaderView = () => {
 	return (
@@ -18,7 +19,7 @@ const HeaderView = () => {
         </ul>
         </div>
         <ul className="nav navbar-nav navbar-right justify-content-right">
-        <li><a href="#" ><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li><a href="/" onClick={() => LoginService.signout()} ><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
         </nav>
         );

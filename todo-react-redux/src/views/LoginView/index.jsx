@@ -1,31 +1,37 @@
 import React from 'react';
 import LoginForm from "../components/LoginForm";
-import { BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
-import Login from '../../services/login.js';
+import { Redirect} from 'react-router-dom';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class LoginView extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      forgotPassword: false,
+    }
   }
-  state = { redirectToReferrer: false };
   
-  login = () => {
-    this.props.loginService.authenticate(() => {
-      this.setState({ redirectToReferrer: true });
-    });
-  };
 
   render() {
-    let { from } =  { from: { pathname: "/" } };
-    let { redirectToReferrer } = this.state;
-    if (redirectToReferrer) return <Redirect to={from} />;
+    const { from } =  { from: { pathname: "/" } };
+    if (this.props.loginService.checkLogin()) return <Redirect to={from} />;
+    
     return (
       <div style={{"width": "300px", "margin": "auto"}}>
-        <LoginForm onLogin={this.login} />
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <LoginForm 
+      onSubmitSuccess={() => {
+        this.props.loginService.authenticate(() => {
+          this.forceUpdate();
+        });
+      }} />
+     
+      </MuiThemeProvider>
       </div>
-    );
+      );
   }
 }
 
 
-  export default LoginView;
+export default LoginView;

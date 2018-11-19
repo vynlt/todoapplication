@@ -3,14 +3,14 @@ import MainView from '../views/MainView';
 import HeaderView from '../views/HeaderView';
 import AboutView from '../views/AboutView';
 import { BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
-
+import LoginService from '../services/login.js';
 
 const HomePage = ({ component: Component, loginService , ...rest }) => {
 	return (
 		<Route
 		{...rest}
 		render={(props) =>
-			loginService.checkLogin() ? (
+			LoginService.checkLogin() ? (
 				<div>
 				<HeaderView />
 				<Router>
