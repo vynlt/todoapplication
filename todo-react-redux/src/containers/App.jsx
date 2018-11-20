@@ -4,15 +4,11 @@ import ForgotPasswordView from '../views/ForgotPasswordView';
 import HomePage from './homePage.jsx';
 import LoginService from '../services/login.js';
 import { connect } from 'react-redux';
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App  extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = {
-			
-		}
 	}
 
 	getLoginSession = () => {
@@ -26,23 +22,23 @@ class App  extends React.Component {
 	render(){
 		return (
 			<div>
-			<Router>
-			<Switch>
-			<Route path="/login" render={() => (
-				<div>
-				<div className="todo-app">
-				<LoginView loginService={LoginService} loginState={this.getLoginSession()} logInHandler={this.props.logIn} />
-				</div>
-				<div className="todo-app">
-				<ForgotPasswordView />
-				</div>
-				</div>)} 
-			/>
-			<Route path="/" render={() => (<HomePage path="/" component={HomePage} loginState={this.getLoginSession()} logOutHandler={this.props.logOut} />)} />
-			</Switch>
-			</Router>
+				<Router>
+					<Switch>
+						<Route path="/login" render={() => (
+							<div>
+								<div className="todo-app">
+									<LoginView loginService={LoginService} loginState={this.getLoginSession()} logInHandler={this.props.logIn} />
+								</div>
+								<div className="todo-app">
+									<ForgotPasswordView />
+								</div>
+							</div>)} 
+						/>
+						<Route path="/" render={() => (<HomePage path="/" component={HomePage} loginState={this.getLoginSession()} logOutHandler={this.props.logOut} />)} />
+					</Switch>
+				</Router>
 			</div>
-			);
+		);
 	}
 }
 

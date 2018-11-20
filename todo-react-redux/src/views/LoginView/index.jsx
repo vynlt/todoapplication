@@ -16,18 +16,18 @@ class LoginView extends React.Component {
   handleSubmit = (values) => {
     const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
     return sleep(1000).then(() => {
-    if (!this.props.loginService.getUser(values.email)) {
-      throw new SubmissionError({
-        email: 'User does not exist',
-        _error: 'Login failed!'
-      })
-    } else if (values.password !== this.props.loginService.getUser(values.email)) {
-      throw new SubmissionError({
-        password: 'Wrong password',
-        _error: 'Login failed!'
-      })
-    } 
-  })
+      if (!this.props.loginService.getUser(values.email)) {
+        throw new SubmissionError({
+          email: 'User does not exist',
+          _error: 'Login failed!'
+        })
+      } else if (values.password !== this.props.loginService.getUser(values.email)) {
+        throw new SubmissionError({
+          password: 'Wrong password',
+          _error: 'Login failed!'
+        })
+      } 
+    });
   }
 
   render() {
@@ -48,7 +48,7 @@ class LoginView extends React.Component {
       }} />
       </MuiThemeProvider>
       </div>
-      );
+    );
   }
 }
 

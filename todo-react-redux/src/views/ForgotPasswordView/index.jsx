@@ -23,28 +23,27 @@ class ForgotPasswordView extends React.Component{
 	showInfo = () => {
 		if(this.props.values && LoginService.getUser(this.props.values.email)){
 			return(<div style={{ "margin": "10% auto"}}>
-				<div>Account: {this.props.values ? this.props.values.email : ''}</div>
-				<div>ForgotPassword: {LoginService.getUser(this.props.values.email)}</div>
-				</div>);
+					<div>Account: {this.props.values ? this.props.values.email : ''}</div>
+					<div>ForgotPassword: {LoginService.getUser(this.props.values.email)}</div>
+			</div>);
 		}else if(this.props.values && !LoginService.getUser(this.props.values.email)){
 			return (
 				<div>Account does not exist</div>
-				)
+			)
 		}
 		else{
 			return null;
-			
 		}
 	}
 
 	render(){
 		return (
 			<div style={{"width": "300px", "margin": "-30% auto"}}>
-			<button className="btn btn-outline-primary" type="button" onClick={this.handleForgotButton} disabled={!this.props.values} >
-			Forgot Password
-			</button>
+				<button className="btn btn-outline-primary" type="button" onClick={this.handleForgotButton} disabled={!this.props.values} >
+				Forgot Password
+				</button>
 			{
-				(this.state.emailValue !== (this.props.values?this.props.values.email: null) ? false : this.state.showForgotPassword)  && this.showInfo()
+				(this.state.emailValue !== (this.props.values? this.props.values.email: null) ? false : this.state.showForgotPassword)  && this.showInfo()
 			}
 			
 			</div>
