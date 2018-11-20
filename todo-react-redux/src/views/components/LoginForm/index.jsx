@@ -51,13 +51,12 @@ const renderPasswordField = ({ input, label, meta: { touched, error }, ...custom
   />
 )
 
-class LoginForm extends React.Component{
-  render() {
-    const {  error, handleSubmit, pristine, reset, submitting, invalid} = this.props;
+const LoginForm = props => {
+    const {  error, handleSubmit, pristine, reset, submitting, invalid} = props;
     return (
       <form onSubmit={handleSubmit}>
         <div>
-          <Field name="email" component={renderTextField} label="Email" onChange={this.handleChange} />
+          <Field name="email" component={renderTextField} label="Email" />
         </div>
         
         <div>
@@ -74,7 +73,6 @@ class LoginForm extends React.Component{
         </div>
       </form>
       )
-  }
 }
 
 export default reduxForm({

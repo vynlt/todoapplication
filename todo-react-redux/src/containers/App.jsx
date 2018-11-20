@@ -27,14 +27,14 @@ class App  extends React.Component {
 						<Route path="/login" render={() => (
 							<div>
 								<div className="todo-app">
-									<LoginView loginService={LoginService} loginState={this.getLoginSession()} logInHandler={this.props.logIn} />
+									<LoginView loginService={LoginService} loginState={true} logInHandler={this.props.logIn} />
 								</div>
 								<div className="todo-app">
 									<ForgotPasswordView />
 								</div>
 							</div>)} 
 						/>
-						<Route path="/" render={() => (<HomePage path="/" component={HomePage} loginState={this.getLoginSession()} logOutHandler={this.props.logOut} />)} />
+						<Route path="/" render={() => (<HomePage path="/" component={HomePage} loginState={true} logOutHandler={this.props.logOut} />)} />
 					</Switch>
 				</Router>
 			</div>

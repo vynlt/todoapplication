@@ -9,8 +9,11 @@ const HeaderView = ({onLogout}) => {
                         </button>
                         <div className="navbar-collapse collapse w-100" id="collapsingNavbar3">
                         <ul className="navbar-nav w-100 justify-content-center">
-                                <li className="nav-item active">
+                                <li className="nav-item">
                                         <a className="nav-link" href="/">Home</a>
+                                </li>
+                                <li className="nav-item">
+                                        <a className="nav-link" href="/profile">Profile</a>
                                 </li>
                                 <li className="nav-item">
                                         <a className="nav-link" href="/about">About</a>
