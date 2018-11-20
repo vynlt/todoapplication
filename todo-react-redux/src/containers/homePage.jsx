@@ -5,14 +5,14 @@ import AboutView from '../views/AboutView';
 import { BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 
 
-const HomePage = ({ component: Component, loginState, logInStateChanger, ...rest }) => {
+const HomePage = ({ component: Component, loginState, logOutHandler, ...rest }) => {
 	return (
 		<Route
 		{...rest}
 		render={(props) =>
 			loginState ? (
 				<div className="todo-app">
-				<HeaderView onLogout={logInStateChanger} />
+				<HeaderView onLogout={logOutHandler} />
 				<Router>
 				<Switch>
 				<Route exact path="/" component={MainView} />

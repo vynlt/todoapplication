@@ -1,6 +1,5 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import LoginService from '../../services/login.js';
 
 const HeaderView = ({onLogout}) => {
 	return (

@@ -40,7 +40,7 @@ class LoginView extends React.Component {
       <LoginForm 
       onSubmit={this.handleSubmit}
       onSubmitSuccess={() => {
-        this.props.loginService.authenticate(() => {
+        this.props.logInHandler(() => {
           this.setState({
             loginState: true,
           })
