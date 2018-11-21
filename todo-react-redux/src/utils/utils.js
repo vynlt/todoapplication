@@ -14,8 +14,8 @@ class Utils{
 		return sessionStorage.getItem('namespace');
 	};
 
-	addLoginSession = () => {
-		sessionStorage.setItem('namespace', 'namespace');
+	addLoginSession = (email) => {
+		sessionStorage.setItem('namespace', email);
 	};
 
 	destroyLoginSession = () =>{
@@ -23,12 +23,29 @@ class Utils{
 	};
 	
 	
-	addUser = (email, password) => {
-		localStorage.setItem(email, password);
+	addUser = (email, data) => {
+		let newData;
+		if(typeof data === 'string' && !localStorage.getItem(email)){
+			newData = {password: data};
+			localStorage.setItem(email, JSON.stringify(newData));
+		}else if(typeof data === 'string' && localStorage.getItem(email)){
+			return;
+		}
+		else{
+			newData = {password: JSON.parse(localStorage.getItem(email)).password,
+								userProfile: data};
+								localStorage.setItem(email, JSON.stringify(newData));
+		}
+		
 	}
 
-	getUser = (email) => {
-		return localStorage.getItem(email);
+	getUserPassword = (email) => {
+		return JSON.parse(localStorage.getItem(email)).password;
+	}
+
+	getUserProfile = (email) => {
+
+		return JSON.parse(localStorage.getItem(email)).userProfile;
 	}
 
 };

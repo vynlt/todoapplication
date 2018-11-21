@@ -10,6 +10,7 @@ class LoginView extends React.Component {
     super(props);
     this.state = {
       loginState: this.props.loginState,
+      loginEmail: null
     }
   }
   
@@ -26,7 +27,10 @@ class LoginView extends React.Component {
           password: 'Wrong password',
           _error: 'Login failed!'
         })
-      } 
+      } else{
+        
+        this.setState({loginEmail: values.email});
+      }
     });
   }
 
@@ -44,7 +48,7 @@ class LoginView extends React.Component {
           this.setState({
             loginState: true,
           })
-        });
+        }, this.state.loginEmail);
       }} />
       </MuiThemeProvider>
       </div>

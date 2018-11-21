@@ -11,14 +11,14 @@ const LoginService = {
   },
   
   getUser(email){
-    return utils.getUser(email);
+    return utils.getUserPassword(email);
   },
-  authenticate(cb) {
-    utils.addLoginSession();
+  authenticate(cb, email) {
+    utils.addLoginSession(email);
     setTimeout(cb, 100); // fake async
   },
   signout() {
-    
+  
   	utils.destroyLoginSession();
   }
 };

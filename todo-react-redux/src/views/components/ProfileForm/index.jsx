@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
 import DatePicker from 'material-ui/DatePicker'
 import MenuItem from 'material-ui/MenuItem'
-
+import { connect } from 'react-redux'
 
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom
@@ -26,7 +26,7 @@ const renderSelectField = ({
 	children,
 	...custom
 }) => (
-<SelectField
+<SelectField style={{bottom: "-14px"}}
 floatingLabelText={label}
 errorText={touched && error}
 {...input}
@@ -39,15 +39,20 @@ children={children}
 const renderDatePicker = ({
 	input,
 	label,
+	meta: { touched, error },
 	minDate,
 	maxDate
-}) => (
-<DatePicker
+}) => {
+	return(
+<DatePicker style={{ width: "256px", display: "inline-block", position: "relative"}}
 floatingLabelText={label}
 onChange={(event, value) => input.onChange(value)}
+minDate={minDate}
+maxDate={maxDate}
+value={new Date(input.value) || null}
 />
 )
-
+}
 
 
 const renderMultiLineField = ({ input, label, meta: { touched, error }, ...custom
@@ -55,6 +60,7 @@ const renderMultiLineField = ({ input, label, meta: { touched, error }, ...custo
 
 	return(
 		<TextField
+		style = {{"width": "100%"}}
 		hintText={label}
 		floatingLabelText={label}
 		errorText={touched && error}
@@ -66,6 +72,24 @@ const renderMultiLineField = ({ input, label, meta: { touched, error }, ...custo
 		{...custom}
 		/>
 		)
+}
+
+
+const validate = values => {
+	const errors = {}
+	const requiredFields = [
+	'firstName',
+	'lastName',
+	'dateOfBirth',
+	'ethnicity',
+	]
+	requiredFields.forEach(field => {
+		if (!values[field]) {
+			errors[field] = 'Required'
+		}
+	})
+
+	return errors
 }
 
 
@@ -90,19 +114,20 @@ class ProfileForm extends React.Component {
 		}
 
 		render(){
-			const {  error, handleSubmit, pristine, reset, submitting, invalid, minDate, maxDate} = this.props;
 			return (
-				<form onSubmit={handleSubmit}>
+				<form>
 				<div>
+				<span>
 				<Field name="firstName" component={renderTextField} label="First Name" />
-				</div>
-				<div>
+				</span>
+				
+				<span>
 				<Field name="lastName" component={renderTextField} label="Last Name" />
-				</div>
-				<div>
-				<Field name="dateOfBirth" component={renderDatePicker} label="Date of Birth" minDate={minDate} maxDate={maxDate} />
-				</div>
-				<div>
+				</span>
+				<span>
+				<Field name="dateOfBirth" component={renderDatePicker} label="Date of Birth" minDate={new Date(1970, 0)} maxDate={new Date()} />
+				</span>
+				<span>
 				<Field
 				name="ethnicity"
 				component={renderSelectField}
@@ -114,8 +139,11 @@ class ProfileForm extends React.Component {
 				<MenuItem value="khmer" primaryText="Khmer" />
 				<MenuItem value="other" primaryText="Other" />
 				</Field>
+				
+				</span>
 				</div>
-				<div>
+				
+				<div style={{"paddingLeft" : "10px", "paddingRight": "10px", "maxWidth": "512px", margin: "0 auto 0 auto"}}>
 				<Field
 				name="notes"
 				component={renderMultiLineField}
@@ -123,15 +151,30 @@ class ProfileForm extends React.Component {
 				onKeyPress={(event) => this.limitLines(event)}
 				/>
 				</div>
-				{error && <strong>{error}</strong>}
-				<div>
+				
 
-				</div>
 				</form>
 				)
 		}
 	}
 
+	const mapStateToProps = (state, ownProps) => {
+		return {
+			initialValues: {
+				firstName: ownProps.initialValues.firstName,
+				lastName: ownProps.initialValues.lastName,
+				dateOfBirth: ownProps.initialValues.dateOfBirth,
+				ethnicity: ownProps.initialValues.ethnicity,
+				notes: ownProps.initialValues.notes,
+			}
+		}
+	}
+
+	ProfileForm = connect(mapStateToProps)(ProfileForm);
+
 	export default reduxForm({
 		form: 'ProfileForm',
+		enableReinitialize: true,
+		validate,
+
 	})(ProfileForm)
