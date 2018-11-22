@@ -2,6 +2,7 @@ import React from 'react';
 import {getFormValues} from 'redux-form'
 import { connect } from 'react-redux';
 import LoginService from '../../services/login.js';
+import './style.scss'
 
 class ForgotPasswordView extends React.Component{
 	constructor(props){
@@ -38,7 +39,7 @@ class ForgotPasswordView extends React.Component{
 
 	render(){
 		return (
-			<div style={{"width": "300px", "margin": "-30% auto"}}>
+			<div className="todo-app-forgotpassword-view">
 				<button className="btn btn-outline-primary" type="button" onClick={this.handleForgotButton} disabled={!this.props.values} >
 				Forgot Password
 				</button>

@@ -5,7 +5,8 @@ import SelectField from 'material-ui/SelectField'
 import DatePicker from 'material-ui/DatePicker'
 import MenuItem from 'material-ui/MenuItem'
 import { connect } from 'react-redux'
-
+import './style.scss'
+import {SELECT_1, SELECT_2, SELECT_3, SELECT_4,SELECT_5} from './constants.js'
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom
 }) => (
@@ -13,6 +14,7 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom
 hintText={label}
 floatingLabelText={label}
 errorText={touched && error}
+
 {...input}
 {...custom}
 />
@@ -26,7 +28,7 @@ const renderSelectField = ({
 	children,
 	...custom
 }) => (
-<SelectField style={{bottom: "-14px"}}
+<SelectField className="selected-field"
 floatingLabelText={label}
 errorText={touched && error}
 {...input}
@@ -44,14 +46,14 @@ const renderDatePicker = ({
 	maxDate
 }) => {
 	return(
-<DatePicker style={{ width: "256px", display: "inline-block", position: "relative"}}
-floatingLabelText={label}
-onChange={(event, value) => input.onChange(value)}
-minDate={minDate}
-maxDate={maxDate}
-value={new Date(input.value) || null}
-/>
-)
+		<DatePicker className="date-picker"
+		floatingLabelText={label}
+		onChange={(event, value) => input.onChange(value)}
+		minDate={minDate}
+		maxDate={maxDate}
+		value={input.value !== "" ?  new Date(input.value) : undefined }
+		/>
+		)
 }
 
 
@@ -60,7 +62,7 @@ const renderMultiLineField = ({ input, label, meta: { touched, error }, ...custo
 
 	return(
 		<TextField
-		style = {{"width": "100%"}}
+		style={{width: "100%"}}
 		hintText={label}
 		floatingLabelText={label}
 		errorText={touched && error}
@@ -94,14 +96,10 @@ const validate = values => {
 
 
 class ProfileForm extends React.Component {
-	constructor(props){
-		super(props);
-		
-	}
 
 	limitLines = (event) => {
 		if(this.getNumberOfLines(event.target.value) === 5)
-			if(event.which == 13){
+			if(event.which === 13){
 				event.preventDefault();
 			}
 		}
@@ -114,67 +112,64 @@ class ProfileForm extends React.Component {
 		}
 
 		render(){
+			
 			return (
 				<form>
-				<div>
-				<span>
-				<Field name="firstName" component={renderTextField} label="First Name" />
-				</span>
-				
-				<span>
-				<Field name="lastName" component={renderTextField} label="Last Name" />
-				</span>
-				<span>
-				<Field name="dateOfBirth" component={renderDatePicker} label="Date of Birth" minDate={new Date(1970, 0)} maxDate={new Date()} />
-				</span>
-				<span>
-				<Field
-				name="ethnicity"
-				component={renderSelectField}
-				label="Ethnicity"
-				>
-				<MenuItem value="kinh" primaryText="Kinh" />
-				<MenuItem value="hoa" primaryText="Hoa" />
-				<MenuItem value="cham" primaryText="Cham" />
-				<MenuItem value="khmer" primaryText="Khmer" />
-				<MenuItem value="other" primaryText="Other" />
-				</Field>
-				
-				</span>
-				</div>
-				
-				<div style={{"paddingLeft" : "10px", "paddingRight": "10px", "maxWidth": "512px", margin: "0 auto 0 auto"}}>
-				<Field
-				name="notes"
-				component={renderMultiLineField}
-				label="Notes"
-				onKeyPress={(event) => this.limitLines(event)}
-				/>
-				</div>
-				
-
+					<div>
+						<span>
+							<Field name="firstName" component={renderTextField} label="First Name" />
+						</span>
+						<span>
+							<Field name="lastName" component={renderTextField} label="Last Name" />
+						</span>
+						<span>
+							<Field name="dateOfBirth" component={renderDatePicker} label="Date of Birth" minDate={new Date(1970, 0)} maxDate={new Date()} />
+						</span>
+						<span>
+							<Field
+							name="ethnicity"
+							component={renderSelectField}
+							label="Ethnicity"
+							>
+								<MenuItem value="select-1" primaryText={SELECT_1} />
+								<MenuItem value="select-2" primaryText={SELECT_2} />
+								<MenuItem value="select-3" primaryText={SELECT_3} />
+								<MenuItem value="select-4" primaryText={SELECT_4} />
+								<MenuItem value="select-5" primaryText={SELECT_5} />
+							</Field>
+						</span>
+					</div>
+					<div className="note-field-wrapper">
+						<Field
+						name="notes"
+						component={renderMultiLineField}
+						label="Notes"
+						onKeyPress={(event) => this.limitLines(event)}
+						/>
+					</div>
 				</form>
 				)
 		}
 	}
 
 	const mapStateToProps = (state, ownProps) => {
+		
 		return {
 			initialValues: {
-				firstName: ownProps.initialValues.firstName,
-				lastName: ownProps.initialValues.lastName,
-				dateOfBirth: ownProps.initialValues.dateOfBirth,
-				ethnicity: ownProps.initialValues.ethnicity,
-				notes: ownProps.initialValues.notes,
-			}
+				firstName: ownProps.initialValues !== null  ? ownProps.initialValues.firstName : null,
+				lastName: ownProps.initialValues !== null ? ownProps.initialValues.lastName : null,
+				dateOfBirth: ownProps.initialValues !== null ? ownProps.initialValues.dateOfBirth : null,
+				ethnicity: ownProps.initialValues !== null ? ownProps.initialValues.ethnicity : null,
+				notes: ownProps.initialValues !== null? ownProps.initialValues.notes : null,
+			},
+			
 		}
 	}
-
 	ProfileForm = connect(mapStateToProps)(ProfileForm);
 
 	export default reduxForm({
 		form: 'ProfileForm',
 		enableReinitialize: true,
+		keepDirtyOnReinitialize: true,
 		validate,
-
 	})(ProfileForm)

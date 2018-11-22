@@ -4,6 +4,7 @@ import { Redirect} from 'react-router-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { SubmissionError } from 'redux-form'
+import './style.scss'
 
 class LoginView extends React.Component {
   constructor(props){
@@ -39,7 +40,7 @@ class LoginView extends React.Component {
     if (this.state.loginState) return <Redirect to={from} />;
     
     return (
-      <div style={{"width": "300px", "margin": "45% auto"}}>
+      <div className="todo-app-login-view">
       <MuiThemeProvider muiTheme={getMuiTheme()}>
       <LoginForm 
       onSubmit={this.handleSubmit}
