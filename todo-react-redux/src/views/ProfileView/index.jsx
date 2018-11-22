@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileForm from "../components/ProfileForm";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { reset, getFormValues, isValid, isInvalid, isPristine} from 'redux-form'  
+import { reset, getFormValues, isInvalid, isPristine} from 'redux-form'  
 import { connect } from 'react-redux' 
 import ProfileService from '../../services/profile.js'
 import LoginService from '../../services/login.js'
@@ -57,7 +57,6 @@ class ProfileView extends React.Component {
 		}
 
 		render(){
-
 			return(
 				<div>
 				<div className="profile-header">
@@ -66,7 +65,7 @@ class ProfileView extends React.Component {
 				</h1>
 				</div>
 				<MuiThemeProvider muiTheme={getMuiTheme()}>
-				<ProfileForm  ref="ProfileForm" initialValues={this.onInitial()} onChange={() => this.setState({
+				<ProfileForm initialValues={this.onInitial()} onChange={() => this.setState({
 					showSuccess: false})}/>
 				</MuiThemeProvider>
 				{this.state.showSuccess && (
