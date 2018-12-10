@@ -45,7 +45,6 @@ class ProfileView extends React.Component {
 			this.props.reset('ProfileForm');
 		}
 
-
 		onInitial = () => {
 			if(this.state.isReset){
 				console.log("Null initial")
