@@ -5,13 +5,13 @@ import {Provider} from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.scss';
-import App from './containers/app';
+import App from './containers/App';
 import reducer from './reducers';
 import Model from './model/Model';
 import {SHOW_ALL} from './constants/index.js'; 
-import LoginService from './services/login.js';
 
-LoginService.addUser("vynlt61811@gmail.com", "Ab1");
+
+
 let model = new Model("MyModelName1");
 
 const initialState = {

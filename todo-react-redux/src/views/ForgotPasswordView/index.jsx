@@ -1,7 +1,7 @@
 import React from 'react';
 import {getFormValues} from 'redux-form'
 import { connect } from 'react-redux';
-import LoginService from '../../services/login.js';
+import {LoginService} from '../../services/login.js';
 import './style.scss'
 
 class ForgotPasswordView extends React.Component{

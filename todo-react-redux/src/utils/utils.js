@@ -11,15 +11,15 @@ class Utils{
 	};
 	getLoginSession = () => 
 	{
-		return sessionStorage.getItem('namespace');
+		return sessionStorage.getItem('user');
 	};
 
 	addLoginSession = (email) => {
-		sessionStorage.setItem('namespace', email);
+		sessionStorage.setItem('user', email);
 	};
 
 	destroyLoginSession = () =>{
-		sessionStorage.removeItem('namespace');
+		sessionStorage.removeItem('user');
 	};
 	
 	

@@ -3,7 +3,8 @@ import LoginForm from "../components/LoginForm";
 import { Redirect} from 'react-router-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { SubmissionError } from 'redux-form'
+
+import {LoginService} from '../../services/login.js';
 import './style.scss'
 
 class LoginView extends React.Component {
@@ -16,23 +17,13 @@ class LoginView extends React.Component {
   }
   
   handleSubmit = (values) => {
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-    return sleep(1000).then(() => {
-      if (!this.props.loginService.getUser(values.email)) {
-        throw new SubmissionError({
-          email: 'User does not exist',
-          _error: 'Login failed!'
-        })
-      } else if (values.password !== this.props.loginService.getUser(values.email)) {
-        throw new SubmissionError({
-          password: 'Wrong password',
-          _error: 'Login failed!'
-        })
-      } else{
-        
-        this.setState({loginEmail: values.email});
-      }
-    });
+    LoginService.login(values.email, values.password)
+    .then(
+        user => {
+          this.setState({loginEmail: values.email});
+        },
+        error => this.setState({ error, loading: false })
+    );
   }
 
   render() {

@@ -5,7 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { reset, getFormValues, isInvalid, isPristine} from 'redux-form'  
 import { connect } from 'react-redux' 
 import ProfileService from '../../services/profile.js'
-import LoginService from '../../services/login.js'
+import {LoginService} from '../../services/login.js'
 import './style.scss'
 
 class ProfileView extends React.Component {

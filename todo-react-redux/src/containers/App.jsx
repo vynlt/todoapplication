@@ -2,7 +2,7 @@ import React from 'react';
 import LoginView from '../views/LoginView';
 import ForgotPasswordView from '../views/ForgotPasswordView';
 import HomePage from './homePage.jsx';
-import LoginService from '../services/login.js';
+import {LoginService} from '../services/login.js';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -40,10 +40,10 @@ class App  extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
 	logOut: () => {
-		LoginService.signout();
+		LoginService.logout();
 	},
 	logIn: (cb, email) => {
-		LoginService.authenticate(cb, email);
+		LoginService.login(cb, email);
 	}
 })
 export default connect(
